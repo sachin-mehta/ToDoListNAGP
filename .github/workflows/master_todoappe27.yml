@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - todoappe27
+name: Build and deploy Node.js app to Azure Web App - todoappe27
 
 on:
   push:
@@ -15,21 +15,21 @@ jobs:
     steps:
     - uses: actions/checkout@master
 
-    - name: Set up .NET Core
-      uses: actions/setup-dotnet@v1
+    - name: Set up Node.js version
+      uses: actions/setup-node@v1
       with:
-        dotnet-version: '3.1.102'
+        node-version: '12.13.0'
 
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
+    - name: npm install, build, and test
+      run: |
+        npm install
+        npm run build --if-present
+        npm run test --if-present
 
-    - name: dotnet publish
-      run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
-
-    - name: Deploy to Azure Web App
+    - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v1
       with:
         app-name: 'todoappe27'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c0b66f969f294198b218d897302d56d3 }}
-        package: ${{env.DOTNET_ROOT}}/myapp 
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_c3f403edd166436b8e0523959ceefa91 }}
+        package: .
