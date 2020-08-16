@@ -2,7 +2,7 @@
     "name": "To Do App",   
     "short_name": "To-Do", 
     "lang": "en-US",     
-    "start_url": "https://todoappe27.azurewebsites.net/", 
+    "start_url": "/", 
     "icons": [
         {
           "src": "icon.png",
