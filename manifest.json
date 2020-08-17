@@ -2,11 +2,19 @@
     "name": "To Do App",   
     "short_name": "To-Do", 
     "lang": "en-US",     
-    "start_url": "/", 
+    "start_url": "/index.html", 
     "icons": [
         {
-          "src": "icon.png",
-          "type": "image/png"
+          "src": "ok-128.png",
+          "type": "image/png",
+          "sizes": "192x192",
+          "purpose": "any maskable"
+        },
+        {
+          "src": "ok-512.png",
+          "type": "image/png",
+          "sizes": "512x512",
+          "purpose": "any maskable"
         }
       ],
     "display": "standalone",  
