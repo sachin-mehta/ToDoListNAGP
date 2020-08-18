@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <title>Todo Widget</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="/ok-128.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="black" />
+    <link rel="shortcut icon" href="#" />
+</head>
+<body class="fullscreen">
+    <div class="container"><div class="content-wrapper"><section class="content-header"><ol class="breadcrumb"><li class="active">To-do App</li></ol></section><section class="content"><div class="col-md-12"><div class="row"><div class="col-md-12"><div class="box box-primary"><div class="box-header with-border"><div class="panel-heading col-lg-12"><todo-list></todo-list></div></div></div></div></div></div><button class="add-button">Add to home screen</button></section></div></div>
+    <script src="todo-widget.min.js"></script>
+</body>
+<script type="text/javascript">
+    window.onload = () => {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                .register('./sw.js');
+        }
+    }
+
+    var deferredPrompt;
+    var addBtn = document.querySelector('.add-button');
+    addBtn.style.display = 'none';
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent Chrome 67 and earlier from automatically showing the prompt
+        e.preventDefault();
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        // Update UI to notify the user they can add to home screen
+        addBtn.style.display = 'block';
+
+        addBtn.addEventListener('click', (e) => {
+            // hide our user interface that shows our A2HS button
+            addBtn.style.display = 'none';
+            // Show the prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('User accepted the A2HS prompt');
+                } else {
+                    console.log('User dismissed the A2HS prompt');
+                }
+                deferredPrompt = null;
+            });
+        });
+    });</script>
+</html>

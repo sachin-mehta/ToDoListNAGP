@@ -1,4 +1,51 @@
-<!doctype html><html><head><title>Todo Widget</title><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="/ok-128.png"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="black"/><link rel="shortcut icon" href="#"/></head><body class="fullscreen"><div class="container"><div class="content-wrapper"><section class="content-header"><ol class="breadcrumb"><li class="active">To-do App</li></ol></section><section class="content"><div class="col-md-12"><div class="row"><div class="col-md-12"><div class="box box-primary"><div class="box-header with-border"><div class="panel-heading col-lg-12"><todo-list></todo-list></div></div></div></div></div></div><button class="add-button">Add to home screen</button></section></div></div><script src="todo-widget.min.js"></script></body><script>window.onload = () => {  
+<!doctype html>
+<html>
+
+<head>
+  <title>Todo Widget</title>
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="/ok-128.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="black"/>
+  <link rel="shortcut icon" href="#" />
+</head>
+
+<body class="fullscreen">
+  <div class="container">
+  <div class="content-wrapper">
+    <section class="content-header">
+      <ol class="breadcrumb">
+        <li class="active">To-do App</li>
+      </ol>
+    </section>
+
+    <section class="content" >
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="box box-primary">
+              <div class="box-header with-border">
+                <div class="panel-heading col-lg-12">
+                  <todo-list>
+    
+                  </todo-list>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+      </div>
+      <button class="add-button">Add to home screen</button>  
+</section>
+</div>
+</div>
+</body>
+<script>
+  window.onload = () => {  
     if ('serviceWorker' in navigator) {     
     navigator.serviceWorker  
     .register('./sw.js'); 
@@ -32,4 +79,7 @@ addBtn.style.display = 'none';
         deferredPrompt = null;
       });
   });
-});</script></html>
+});
+</script>
+
+</html>

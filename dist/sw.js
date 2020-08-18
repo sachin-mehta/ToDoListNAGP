@@ -3,7 +3,8 @@ var filesToCache = [
 '/',    
 '/index.html',    
 '/todo-widget.min.js',
-'/icon.png',
+'/ok-128.png',
+'/ok-512.png',
 '/manifest.json'  ];  
 self.addEventListener('install', function(e) { 
 e.waitUntil(
@@ -14,7 +15,7 @@ return cache.addAll(filesToCache);
 }); 
 /* Serve cached content when offline */ 
 self.addEventListener('fetch', function(e) {  
-e.respondWith(      caches.match(e.request).then(function(response) {  
+e.respondWith(caches.match(e.request).then(function(response) {  
 return response || fetch(e.request);
 })   
 );  
